@@ -1,5 +1,7 @@
 package webservice;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class Calculadora {
 
     private String operador;
@@ -13,7 +15,7 @@ public class Calculadora {
     public Calculadora(int op1, int op2, String oper) {
         this.operando1 = op1;
         this.operando2 = op2;
-	    this.operador = oper;
+	this.operador = oper;
     	this.erro = "";
 	this.resultado = 0;
 	if (oper == "+")
