@@ -9,12 +9,22 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 public class Cliente {
      
     public static void main(String[] args) {
-        int a = 2, b = 3;
+    
+    	if (args.length < 3) {
+    		System.out.println("Argumentos invalidos\n");
+    		return;
+    	}
+    	
+    	String operation = args[0];
+    	String op1 = args[1];
+    	String op2 = args[2];
+        int a = Integer.parseInt(op1);
+        int b = Integer.parseInt(op2);
     
         ClientConfig config = new DefaultClientConfig();
         Client cliente = Client.create(config);
         WebResource servico = cliente.resource("http://localhost:9000/calculadora");
-        WebResource servicoSomarInt = servico.path("somarInt").path(a + "/" + b);
+        WebResource servicoSomarInt = servico.path(operation).path(a + "/" + b);
         ClientResponse respostaSomarInt = servicoSomarInt.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
         String respostaJsonSomarInt = respostaSomarInt.getEntity(String.class);
         System.out.println("Resposta da adicao: " + respostaJsonSomarInt);
